@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CIS"
+                  targetNamespace="http://www.scte.org/wsdl/130-4/2009/cis"
+                  xmlns:tns="http://www.scte.org/wsdl/130-4/2009/cis"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:cis="http://www.scte.org/schemas/130-4/2008a/cis"
+                  xmlns:core="http://www.scte.org/schemas/130-2/2008a/core"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.scte.org/schemas/130-4/2008a/cis SCTE_130-4_2008a.xsd">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://www.scte.org/wsdl/130-4/2009/cis"
+                   version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.scte.org/schemas/130-4/2008a/cis"
+                       schemaLocation="SCTE_130-4_2008a.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- CISClient Message Types -->
+    <wsdl:message name="ContentNotification">
+        <wsdl:part name="notification" element="cis:ContentNotification"/>
+    </wsdl:message>
+    <wsdl:message name="ContentNotificationAcknowledgement">
+        <wsdl:part name="acknowledgement" element="cis:ContentNotificationAcknowledgement"/>
+    </wsdl:message>
+    <wsdl:message name="DeregistrationNotification">
+        <wsdl:part name="notification" element="cis:DeregistrationNotification"/>
+    </wsdl:message>
+    <wsdl:message name="DeregistrationAcknowledgement">
+        <wsdl:part name="acknowledgement" element="cis:DeregistrationAcknowledgement"/>
+    </wsdl:message>
+    <wsdl:message name="ServiceStatusNotification">
+        <wsdl:part name="request" element="core:ServiceStatusNotification"/>
+    </wsdl:message>
+    <wsdl:message name="ServiceStatusAcknowledgement">
+        <wsdl:part name="response" element="core:ServiceStatusAcknowledgement"/>
+    </wsdl:message>
+
+    <!-- Common CIS client/server types -->
+    <wsdl:message name="ServiceCheckRequest">
+        <wsdl:part name="request" element="core:ServiceCheckRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ServiceCheckResponse">
+        <wsdl:part name="response" element="core:ServiceCheckResponse"/>
+    </wsdl:message>
+
+    <!--  CIS Server Message Types -->
+    <wsdl:message name="ListSupportedFeaturesRequest">
+        <wsdl:part name="request" element="cis:ListSupportedFeaturesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ListSupportedFeaturesResponse">
+        <wsdl:part name="response" element="cis:ListSupportedFeaturesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ContentQueryRequest">
+        <wsdl:part name="request" element="cis:ContentQueryRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ContentQueryResponse">
+        <wsdl:part name="response" element="cis:ContentQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ContentNotificationRegistrationRequest">
+        <wsdl:part name="request" element="cis:ContentNotificationRegistrationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ContentNotificationDeregisterResponse">
+        <wsdl:part name="response" element="cis:ContentNotificationDeregisterResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ContentNotificationRegistrationResponse">
+        <wsdl:part name="response" element="cis:ContentNotificationRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ListContentNotificationRegistrationRequest">
+        <wsdl:part name="request" element="cis:ListContentNotificationRegistrationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ListContentNotificationRegistrationResponse">
+        <wsdl:part name="response" element="cis:ListContentNotificationRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ContentNotificationDeregisterRequest">
+        <wsdl:part name="request" element="cis:ContentNotificationDeregisterRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCursorRequest">
+        <wsdl:part name="request" element="cis:CreateCursorRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCursorResponse">
+        <wsdl:part name="response" element="cis:CreateCursorResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CancelCursorRequest">
+        <wsdl:part name="request" element="cis:CancelCursorRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CancelCursorResponse">
+        <wsdl:part name="response" element="cis:CancelCursorResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="CISClient">
+        <wsdl:operation name="contentNotification">
+            <wsdl:input message="tns:ContentNotification"/>
+            <wsdl:output message="tns:ContentNotificationAcknowledgement"/>
+        </wsdl:operation>
+        <wsdl:operation name="serviceCheckRequest">
+            <wsdl:input message="tns:ServiceCheckRequest"/>
+            <wsdl:output message="tns:ServiceCheckResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="serviceStatusNotification">
+            <wsdl:input message="tns:ServiceStatusNotification"/>
+            <wsdl:output message="tns:ServiceStatusAcknowledgement"/>
+        </wsdl:operation>
+        <wsdl:operation name="deregistrationNotification">
+            <wsdl:input message="tns:DeregistrationNotification"/>
+            <wsdl:output message="tns:DeregistrationAcknowledgement"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:portType name="CISServer">
+        <wsdl:operation name="serviceCheckRequest">
+            <wsdl:input message="tns:ServiceCheckRequest"/>
+            <wsdl:output message="tns:ServiceCheckResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listSupportedFeatures">
+            <wsdl:input message="tns:ListSupportedFeaturesRequest"/>
+            <wsdl:output message="tns:ListSupportedFeaturesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listContentNotificationRegistrations">
+            <wsdl:input message="tns:ListContentNotificationRegistrationRequest"/>
+            <wsdl:output message="tns:ListContentNotificationRegistrationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="queryContent">
+            <wsdl:input message="tns:ContentQueryRequest"/>
+            <wsdl:output message="tns:ContentQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCursor">
+            <wsdl:input message="tns:CreateCursorRequest"/>
+            <wsdl:output message="tns:CreateCursorResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cancelCursor">
+            <wsdl:input message="tns:CancelCursorRequest"/>
+            <wsdl:output message="tns:CancelCursorResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="registerContentNotification">
+            <wsdl:input message="tns:ContentNotificationRegistrationRequest"/>
+            <wsdl:output message="tns:ContentNotificationRegistrationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deregisterContentNotification">
+            <wsdl:input message="tns:ContentNotificationDeregisterRequest"/>
+            <wsdl:output message="tns:ContentNotificationDeregisterResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="CISClientBinding" type="tns:CISClient">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="contentNotification">
+            <soap:operation soapAction="contentNotification"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="serviceCheckRequest">
+            <soap:operation soapAction="serviceCheckRequest"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="serviceStatusNotification">
+            <soap:operation soapAction="serviceStatusNotification"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deregistrationNotification">
+            <soap:operation soapAction="deregistrationNotification"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:binding name="CISServerBinding" type="tns:CISServer">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="serviceCheckRequest">
+            <soap:operation soapAction="serviceCheckRequest"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listSupportedFeatures">
+            <soap:operation soapAction="listSupportedFeatures"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listContentNotificationRegistrations">
+            <soap:operation soapAction="listContentNotificationRegistrations"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="registerContentNotification">
+            <soap:operation soapAction="registerContentNotification"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryContent">
+            <soap:operation soapAction="queryContent"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createCursor">
+            <soap:operation soapAction="createCursor"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cancelCursor">
+            <soap:operation soapAction="cancelCursor"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deregisterContentNotification">
+            <soap:operation soapAction="deregisterContentNotification"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="CISClientService">
+        <wsdl:port name="CISClientPort" binding="tns:CISClientBinding">
+            <soap:address location="http://REPLACE_WITH_ACTUAL_URL/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+    <wsdl:service name="CISServerService">
+        <wsdl:port name="CISServerPort" binding="tns:CISServerBinding">
+            <soap:address location="http://REPLACE_WITH_ACTUAL_URL/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

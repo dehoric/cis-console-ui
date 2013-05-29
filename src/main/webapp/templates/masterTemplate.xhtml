@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+<f:view contentType="text/html" locale="en">
+    <h:head title="CIS - Console">
+        <title>CIS Console</title>
+        <ui:insert name="head"/>
+    </h:head>
+    <h:body>
+        <h:panelGroup layout="block">
+            <h:outputText value="CIS Console"/>
+        </h:panelGroup>
+
+        <h:form id="mainForm" prependId="false">
+            <h:panelGrid columns="2" columnClasses="chaptersMenuColumn,chaptersContentColumn">
+                <h:panelGroup layout="block">
+                    <!--
+                                        <p:tree id="bookTree" value="#{bookController.root}" var="node" selectionMode="single"
+                                                selection="#{bookController.selectedNode}">
+                                            <p:ajax event="select" listener="#{bookController.onNodeSelect}"/>
+                                            <p:treeNode expandedIcon="ui-icon-folder-open"
+                                                        collapsedIcon="ui-icon-folder-collapsed">
+                                                <h:outputText value="#{node.name}"/>
+                                            </p:treeNode>
+                                            <p:treeNode type="chapteritem" icon="ui-icon-document">
+                                                <h:outputText value="#{node.name}"/>
+                                            </p:treeNode>
+                                        </p:tree>
+                    -->
+                </h:panelGroup>
+                <h:panelGroup layout="block">
+                    <ui:insert name="content"/>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+        <ui:insert name="appResources"/>
+    </h:body>
+</f:view>
+</html>
