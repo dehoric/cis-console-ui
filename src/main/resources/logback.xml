@@ -10,7 +10,6 @@
     <logger name="com" level="TRACE"/>
     <logger name="org" level="TRACE"/>
 
-
     <root level="TRACE">
         <appender-ref ref="STDOUT"/>
     </root>

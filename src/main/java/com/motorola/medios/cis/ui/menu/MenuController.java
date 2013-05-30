@@ -7,6 +7,7 @@ import org.primefaces.model.TreeNode;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
 /*
@@ -53,9 +54,9 @@ public class MenuController implements Serializable {
         this.selectedNode = selectedNode;
     }
 
-    public String onNodeSelect(NodeSelectEvent event) {
+    public void onNodeSelect(NodeSelectEvent event) {
         if (root == event.getTreeNode().getParent()) {
-            return null;
+            return;
         }
 
         for (TreeNode treeNode : root.getChildren()) {
@@ -66,6 +67,8 @@ public class MenuController implements Serializable {
             }
         }
 
-        return ((MenuNode) event.getTreeNode().getData()).getView();
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.getApplication().getNavigationHandler().handleNavigation(fc, "null",
+                "/views/menu/" + ((MenuNode) event.getTreeNode().getData()).getView() + ".jsf?faces-redirect=true");
     }
 }
